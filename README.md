@@ -1,9 +1,11 @@
 # Capstone-2-Lists-Functions-and-String-Handling
 
-Lists, Functions, and String Handling, Capstone Project #2 Data Science Bootcamp, Task 21
+Lists, Functions, and String Handling, Capstone #2 Data Science Bootcamp, Task 21
 
-user.txt  ---> list of users
-tasks.txt ---> list of tasks
+A TASK MANAGER PROGRAM, REQUIRING 2 EXTERNAL FILES:-
+  - user.txt  ---> list of users
+  - tasks.txt ---> list of tasks
+THE TASK BRIEF IS SET OUT BELOW.
 
 Compulsory Task 1
 
