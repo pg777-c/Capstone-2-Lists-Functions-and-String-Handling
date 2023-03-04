@@ -1,84 +1,73 @@
 # Capstone-2-Lists-Functions-and-String-Handling
-Lists, Functions, and String Handling Task 21 HyperionDev Bootcamp
 
+Lists, Functions, and String Handling, Capstone Project #2 Data Science Bootcamp, Task 21
 
-########################## PSEUDOCODE START #################################
-# STARTED THIS TASK WITHOUT PSEUDOCODE, MADE A LOT OF PROGRESS BUT GOT STUCK
-# IT IS VERY UNCLEAR TO ME HOW TO PROCEED WITH THE TASK BECAUSE IT IS SO LARGE
-# BY TRIAL AND ERROR I GOT TO A CERTAIN POINT WHERE I COULD MODIFY THE TASK BUT...
-#   ...DID NOT KNOW HOW TO SAVE THE MODIFIED TASK
-# A CHAT WITH A CODE REVIEWER HIGHLIGHTED COMPLEXITY IN USING A <for loop> TO INDEX...
-#   ...BY BOTH ROW & COLUMN, BUT I WAS UNABLE TO INCORPORATE THAT ALTERATION SUCCESSFULLY...
-#   ...CODE JUST DID NOT WORK AFTER THE CHANGE
-# THE KEY CHALLENGE IS IN NOT KNOWING HOW TO SUCCESSFULLY MODIFY/MANIPULATE THE LIST
+user.txt  ---> list of users
+tasks.txt ---> list of tasks
 
-# I HAVE NOW, MADE MOST OF THE BASIC FUNCTIONALITY WORK ON THIS TASK. WHAT REMAINS ARE THE STATS REPORTS
-# I HAVE LEARNED HOW TO MODIFY A txt FILE
-# I LEARNED THAT IT IS BEST PRACTICE TO MODIFY A FILE & THEN OVERWRITE THE FILE BACK, NOT MODIFY IN THE txt FILE
-# THE STATS PART OF THE TASK IS UNCLEAR, ALTHOUGH I HAVE HAD SOME INPUT FROM A MENTOR, I NEED TO REREAD THE MENTOR INPUT
-# I BELIEVE THAT MY STATS SHOULD TAKE IN INPUT FROM THE USER AND SAVE THIS TO AN EXTERNAL FILE...
-#   ...(txt NOT NECESSARILY BEST CHOICE), CHECK IF THE FORMAT IS SPECIFIED --> .txt IS SPECIFIED
-# DO I ATTEMPT TO EDIT THE STATS FILE - IN PLACE (NOT BEST PRACTICE) - OR READ INTO MEMORY, AMEND & WRITE BACK???
-# I NEED SOME SORT OF COUNTER TO WRITE TO A FILE, EACH & EVERY TIME A USER LOGS IN, THIS WAS A REQUIREMENT...
-#   ...IT STATES, "The total number of tasks that have been generated and tracked using task_manager.py", THIS IS VAGUE...
-#   ...DOES IT MEAN THE TOTAL EVER ASSIGNED, OR THE TOTAL CURRENTLY ASSIGNED??? PRESUMABLY THE LATTER OPTION
-# THE MATHS TO MANIPULATE THE FIGURES INTO STATS DOES NOT SOUND DIFFICULT, THE MAIN DIFFICULTY APPEARS TO BE I/O OPS
-# AN OBVIOUS DIFFICULTY IS IN READING THE DATES, BECAUSE THE tasks.txt PROVIDES DATES IN A FORMAT COMPLETELY DIFFERENT...
-#   ...TO THE datetime MODULE
-# I HAVE FOUND THAT THE datetime() => strptime().date MODULE CONVERTS A STR TO AN OBJECT #=> https://medium.com/analytics-vidhya/dealing-with-date-time-of-different-formats-in-python-f1f973d8cdb
+Compulsory Task 1
 
-# THESE ARE THE REQUIREMENTS:-
-'''
-task_overview.txt should contain:
+Follow these steps:
 
-▪The total number of tasks that have been generated and tracked using the task_manager.py.  [I THINK THIS JUST MEANS, HOW MANY TASKS, BOTH COMPLETED & UNCOMPLETED]
+● Use the task_manager.py file for this project. Also, make use of the supporting text files (user.txt and tasks.txt) that accompany this Capstone project in this folder. In this task you will be modifying this program.
 
-▪The total number of completed tasks. [LOOPING THROUGH THE FILES, WITH A COUNTER TO ADD UP EACH TASK, IF: INDEX[-1] == YES]
+● You will notice that the main body of the code requires functionality for registering a user, adding a task, viewing all tasks and viewing the current user's tasks. However, because there is so much functionality needed to complete this, the main body of the loop becomes difficult to read. Using the principle of abstraction, refactor the code to create and use the following functions:
 
-▪The total number of uncompleted tasks. [LOOP, COUNT IF INDEX[-1] == NO]
+o reg_user — that is called when the user selects ‘r’ to register a user.
 
-▪The total number of tasks that havent been completed and that are overdue. [REQUIRES datetime() MODULE TO IDENTIFY & CALCULATE THE CURRENT DATE & TO INTERPRET DIFFERENT DATE FORMATS, TO BASE A CALCULATION ON, IF THE TASK IS OVERDUE]
+o add_task — that is called when a user selects ‘a’ to add a new task.
 
-▪The percentage of tasks that are incomplete. [IDENTIFY IF OVERDUE AND WORK-OUT % BASED ON TOTAL NUMBER OF TASKS]
+o view_all — that is called when users type ‘va’ to view all the tasks listed in ‘tasks.txt’.
 
-▪The percentage of tasks that are overdue [IDENTIFY IF OVERDUE AND WORK-OUT % BASED ON TOTAL NUMBER OF TASKS]
+o view_mine — that is called when users type ‘vm’ to view all the tasks that have been assigned to them.
 
+● Modify the function called reg_user to make sure that you don’t duplicate usernames when you add a new user to user.txt. If a user tries to add a username that already exists in user.txt, provide a relevant error message and allow them to try to add a user with a different username.
 
-TASK INSTRUCTIONS :-
-user_overview.txt should contain:
+● Add the following functionality when the user selects ‘vm’ to view all the tasks assigned to them:
 
-The total number of users registered with task_manager.py. [I THINK THIS JUST MEANS HOW MANY USERS]
+o Display all tasks in a manner that is easy to read. Make sure that each task is displayed with a corresponding number which can be used to identify the task.
 
-The total number of tasks that have been generated and tracked using task_manager.py.  [I THINK THIS JUST MEANS, HOW MANY TASKS, BOTH COMPLETED & UNCOMPLETED => this the same as above for -> task_overview.txt, a repitition]
+o Allow the user to select either a specific task (by entering a number) or input ‘-1’ to return to the main menu.
 
-For each user also describe:
-▪The total number of tasks assigned to that user. [LOOP THROUGH FILE, A COUNTER COUNTS HOW MANY TASKS FOR EACH USER]
+o If the user selects a specific task, they should be able to choose to either mark the task as complete or edit the task. If the user chooses to mark a task as  complete, the ‘Yes’/’No’ value that describes whether the task has been completed or not should be changed to ‘Yes’. When the user chooses to edit a task, the
+username of the person to whom the task is assigned or the due date of the task can be edited. The task can only be edited if it has not yet been completed.
 
-▪The percentage of the total number of tasks that have been assigned to that user [THIS DOES NOT MAKE SENSE, A % OF WHAT? I THINK THIS MEANS THE % OUT OF ALL TASKS IN THE FILE, PRESUMABLY BOTH COMPLETE AND UNCOMPLETE TASKS]
+● Add an option to generate reports to the main menu of the application. The menu for the admin user should now look something like this:
 
-▪The percentage of the tasks assigned to that user that have been completed [CALCULATION BASED ON SEPERATING/IDENTIFYING EACH TASK BY USER AT INDEX[0] AND IDENTIFYING THE Yes/No AT INDEX [-1]]
+● When the user chooses to generate reports, two text files, called task_overview.txt and user_overview.txt, should be generated. Both these text files should output data in a user-friendly, easy to read manner.
 
-▪The percentage of the tasks assigned to that user that must still be completed [AS ABOVE BUT THE INVERSE TO COMPLETED TASKS]
+o task_overview.txt should contain:
 
-▪The percentage of the tasks assigned to that user that have not yet been completed and are overdue [LOOP THROUGH BUT IDENTIFY A SUB-SET OF UNCOMPLETED TASKS. THIS REQUIRES USING A MODULE TO KNOW WHAT THE CURRENT DATE IS, I DO NOT THINK THAT THE CURRENT TIME IS RELEVANT]
+▪ The total number of tasks that have been generated and tracked using the task_manager.py.
 
-Modify the menu option that allows the admin to display statistics so that the reports generated 
-are read from task_overview.txt and user_overview.txt and displayed on the screen 
-in a user-friendly manner. If these textfiles dont exist (because the user hasnt selected
- to generate them yet), first call the code to generate the text files
+▪ The total number of completed tasks.
 
-'''
-# task_overview.txt and user_overview.txt FUNCTIONS() ARE BOTH SIMILAR, I CAN ONLY IDENTIFY THAT THE task_overview.txt FUNCTION() WILL NOT NEED ANY ARGUMENT SENT TO IT, BUT user_overview.txt MIGHT NEED THE USER INFO AS AN ARGUMENT FOR THIS FUNCTION()
+▪ The total number of uncompleted tasks.
 
-# WE ARE REQUIRED TO CREATE 2-SEPARATE FUNCTIONS FOR THE 'MENU'; GENERATE_REPORTS() & REVIEW_STATISTICS(), I DO NOT UNDERSTAND THIS BECAUSE THE INSTRUCTIONS SAY,
-'''
-When the user chooses to generate reports, two text files, called task_overview.txt and user_overview.txt, should be generated.Both these text files should output data in a user-friendly, easy to read manner
-'''
-#...THE ABOVE IMPLIES THAT ONLY THE generate_reports() -> FUNCTION OUTPUTS ALL THE DATA. OR, DOES IT MEAN THAT IT DOES THE CALCULATION & THE display_statistics() FUNCTION OUTPUTS THE INFORMATION. BUT THEN WHY HAVE 2-SEPARATE OPTIONS ON THE MENU???
+▪ The total number of tasks that haven’t been completed and that are overdue.
 
-# WHAT I THINK IS MEANT, IS THAT generate_reports() GIVES BARE FIGURES & display_statistics() GIVES PERCENTAGE FIGURES
+▪ The percentage of tasks that are incomplete.
 
-# NOTA BENE : I COULD NOT GET THE LOGIC TO WORK FOR user_overview.txt, MY APPROACH WAS BAD, I SPENT WEEKS ON THIS WITHOUT SUCCES
+▪ The percentage of tasks that are overdue.
 
-# I UNDERSTAND MY FUNCTIONS ARE TOO LONG, BUT I COULD NOT WASTE MORE TIME ON THIS TASK AS I AM WELL BEHIND NOW ON TASKS
-########################## PSEUDOCODE END ###################################
+o user_overview.txt should contain:
+
+▪ The total number of users registered with task_manager.py.
+
+▪ The total number of tasks that have been generated and tracked using task_manager.py.
+
+▪ For each user also describe:
+
+▪ The total number of tasks assigned to that user.
+
+▪ The percentage of the total number of tasks that have been assigned to that user
+
+▪ The percentage of the tasks assigned to that user that have been completed
+
+▪ The percentage of the tasks assigned to that user that must still be completed
+
+▪ The percentage of the tasks assigned to that user that have not yet been completed and are overdue
+
+● Modify the menu option that allows the admin to display statistics so that the reports generated are read from task_overview.txt and user_overview.txt and displayed on the screen in a user-friendly manner.
+
+If these text files don’t exist (because the user hasn’t selected to generate them yet), first call the code to generate the text files.
